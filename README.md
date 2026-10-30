@@ -6,7 +6,7 @@ network driver, event loop or performance policy patch. The upstream MIT
 license is in `COPYING`; glue uses SPDX BSD-3-Clause (`COPYING.md`).
 
 Enable `CONFIG_LIBNGHTTP3=y` with a POSIX libc. ARM64 QEMU/KVM with
-musl 1.2.3 and Unikraft staging b7d7de873778824104206bb3104987fe09936418
+musl 1.2.3 and Unikraft staging 359307a2a4cc9c1feb22683d841650902b799e4d
 is the validated combination. Other architectures/libcs are not qualified.
 The private config header requires POSIX headers, endian.h and byteswap.h;
 it is not exported to consumers.
