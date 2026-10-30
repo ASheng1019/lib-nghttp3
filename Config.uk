@@ -1,0 +1,7 @@
+# SPDX-License-Identifier: BSD-3-Clause
+menuconfig LIBNGHTTP3
+	bool "nghttp3 1.18.0"
+	depends on HAVE_LIBC
+	default n
+	help
+	  Upstream C HTTP/3 and QPACK library; the application owns network I/O.

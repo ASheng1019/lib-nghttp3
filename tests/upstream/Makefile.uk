@@ -1,0 +1,19 @@
+# SPDX-License-Identifier: BSD-3-Clause
+$(eval $(call addlib,appnghttp3tests))
+APPNGHTTP3TESTS_SRC := $(BUILD_DIR)/libnghttp3/origin/nghttp3-1.18.0
+APPNGHTTP3TESTS_CINCLUDES-y += -I$(APPNGHTTP3TESTS_SRC)/lib -I$(APPNGHTTP3TESTS_SRC)/tests -I$(APPNGHTTP3TESTS_SRC)/tests/munit -I$(APP_BASE)/../../include
+APPNGHTTP3TESTS_CFLAGS-y += -DHAVE_CONFIG_H -DMUNIT_NO_FORK -DMUNIT_NO_BUFFER -D__STDC_NO_ATOMICS__ -std=c11
+APPNGHTTP3TESTS_SRCS-y += $(APP_BASE)/main.c|wrapper
+APPNGHTTP3TESTS_MAIN_FLAGS-y += -Dmain=upstream_tests_main
+APPNGHTTP3TESTS_SRCS-y += $(APPNGHTTP3TESTS_SRC)/tests/main.c
+APPNGHTTP3TESTS_SRCS-y += $(APPNGHTTP3TESTS_SRC)/tests/nghttp3_qpack_test.c
+APPNGHTTP3TESTS_SRCS-y += $(APPNGHTTP3TESTS_SRC)/tests/nghttp3_conn_test.c
+APPNGHTTP3TESTS_SRCS-y += $(APPNGHTTP3TESTS_SRC)/tests/nghttp3_stream_test.c
+APPNGHTTP3TESTS_SRCS-y += $(APPNGHTTP3TESTS_SRC)/tests/nghttp3_tnode_test.c
+APPNGHTTP3TESTS_SRCS-y += $(APPNGHTTP3TESTS_SRC)/tests/nghttp3_http_test.c
+APPNGHTTP3TESTS_SRCS-y += $(APPNGHTTP3TESTS_SRC)/tests/nghttp3_conv_test.c
+APPNGHTTP3TESTS_SRCS-y += $(APPNGHTTP3TESTS_SRC)/tests/nghttp3_settings_test.c
+APPNGHTTP3TESTS_SRCS-y += $(APPNGHTTP3TESTS_SRC)/tests/nghttp3_callbacks_test.c
+APPNGHTTP3TESTS_SRCS-y += $(APPNGHTTP3TESTS_SRC)/tests/nghttp3_str_test.c
+APPNGHTTP3TESTS_SRCS-y += $(APPNGHTTP3TESTS_SRC)/tests/nghttp3_test_helper.c
+APPNGHTTP3TESTS_SRCS-y += $(APPNGHTTP3TESTS_SRC)/tests/munit/munit.c

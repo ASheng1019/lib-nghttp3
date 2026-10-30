@@ -1,0 +1,47 @@
+# SPDX-License-Identifier: BSD-3-Clause
+$(eval $(call addlib_s,libnghttp3,$(CONFIG_LIBNGHTTP3)))
+
+LIBNGHTTP3_VERSION := 1.18.0
+LIBNGHTTP3_URL := https://github.com/ngtcp2/nghttp3/releases/download/v1.18.0/nghttp3-1.18.0.tar.xz
+LIBNGHTTP3_ORIGIN_SHA256 := aad782c23d3f01bd4bb52c8bac7a553b631ef8115fd1612703df6183449fef19
+$(eval $(call fetch,libnghttp3,$(LIBNGHTTP3_URL)))
+LIBNGHTTP3_SRC := $(LIBNGHTTP3_ORIGIN)/nghttp3-$(LIBNGHTTP3_VERSION)
+
+CINCLUDES-$(CONFIG_LIBNGHTTP3) += -I$(LIBNGHTTP3_SRC)/lib/includes
+CXXINCLUDES-$(CONFIG_LIBNGHTTP3) += -I$(LIBNGHTTP3_SRC)/lib/includes
+LIBNGHTTP3_CINCLUDES-y += -I$(LIBNGHTTP3_BASE)/include -I$(LIBNGHTTP3_SRC)/lib
+LIBNGHTTP3_CFLAGS-y += -DHAVE_CONFIG_H -DNGHTTP3_STATICLIB -DBUILDING_NGHTTP3 -std=c11
+
+# Keep this list in sync with upstream lib/CMakeLists.txt.
+LIBNGHTTP3_SRCS-y += $(LIBNGHTTP3_SRC)/lib/nghttp3_rcbuf.c
+LIBNGHTTP3_SRCS-y += $(LIBNGHTTP3_SRC)/lib/nghttp3_mem.c
+LIBNGHTTP3_SRCS-y += $(LIBNGHTTP3_SRC)/lib/nghttp3_str.c
+LIBNGHTTP3_SRCS-y += $(LIBNGHTTP3_SRC)/lib/nghttp3_conv.c
+LIBNGHTTP3_SRCS-y += $(LIBNGHTTP3_SRC)/lib/nghttp3_buf.c
+LIBNGHTTP3_SRCS-y += $(LIBNGHTTP3_SRC)/lib/nghttp3_ringbuf.c
+LIBNGHTTP3_SRCS-y += $(LIBNGHTTP3_SRC)/lib/nghttp3_pq.c
+LIBNGHTTP3_SRCS-y += $(LIBNGHTTP3_SRC)/lib/nghttp3_map.c
+LIBNGHTTP3_SRCS-y += $(LIBNGHTTP3_SRC)/lib/nghttp3_ksl.c
+LIBNGHTTP3_SRCS-y += $(LIBNGHTTP3_SRC)/lib/nghttp3_qpack.c
+LIBNGHTTP3_SRCS-y += $(LIBNGHTTP3_SRC)/lib/nghttp3_qpack_huffman.c
+LIBNGHTTP3_SRCS-y += $(LIBNGHTTP3_SRC)/lib/nghttp3_qpack_huffman_data.c
+LIBNGHTTP3_SRCS-y += $(LIBNGHTTP3_SRC)/lib/nghttp3_err.c
+LIBNGHTTP3_SRCS-y += $(LIBNGHTTP3_SRC)/lib/nghttp3_debug.c
+LIBNGHTTP3_SRCS-y += $(LIBNGHTTP3_SRC)/lib/nghttp3_conn.c
+LIBNGHTTP3_SRCS-y += $(LIBNGHTTP3_SRC)/lib/nghttp3_stream.c
+LIBNGHTTP3_SRCS-y += $(LIBNGHTTP3_SRC)/lib/nghttp3_frame.c
+LIBNGHTTP3_SRCS-y += $(LIBNGHTTP3_SRC)/lib/nghttp3_tnode.c
+LIBNGHTTP3_SRCS-y += $(LIBNGHTTP3_SRC)/lib/nghttp3_vec.c
+LIBNGHTTP3_SRCS-y += $(LIBNGHTTP3_SRC)/lib/nghttp3_gaptr.c
+LIBNGHTTP3_SRCS-y += $(LIBNGHTTP3_SRC)/lib/nghttp3_idtr.c
+LIBNGHTTP3_SRCS-y += $(LIBNGHTTP3_SRC)/lib/nghttp3_range.c
+LIBNGHTTP3_SRCS-y += $(LIBNGHTTP3_SRC)/lib/nghttp3_http.c
+LIBNGHTTP3_SRCS-y += $(LIBNGHTTP3_SRC)/lib/nghttp3_version.c
+LIBNGHTTP3_SRCS-y += $(LIBNGHTTP3_SRC)/lib/nghttp3_balloc.c
+LIBNGHTTP3_SRCS-y += $(LIBNGHTTP3_SRC)/lib/nghttp3_opl.c
+LIBNGHTTP3_SRCS-y += $(LIBNGHTTP3_SRC)/lib/nghttp3_objalloc.c
+LIBNGHTTP3_SRCS-y += $(LIBNGHTTP3_SRC)/lib/nghttp3_unreachable.c
+LIBNGHTTP3_SRCS-y += $(LIBNGHTTP3_SRC)/lib/nghttp3_settings.c
+LIBNGHTTP3_SRCS-y += $(LIBNGHTTP3_SRC)/lib/nghttp3_callbacks.c
+LIBNGHTTP3_SRCS-y += $(LIBNGHTTP3_SRC)/lib/nghttp3_ratelim.c
+LIBNGHTTP3_SRCS-y += $(LIBNGHTTP3_SRC)/lib/sfparse/sfparse.c
